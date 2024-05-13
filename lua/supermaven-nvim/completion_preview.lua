@@ -124,6 +124,7 @@ function CompletionPreview.on_accept_suggestion()
         character = vim.fn.col("$"),
       }
     }
+
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Space><Left><Del>", true, false, true), "n", false)
     vim.lsp.util.apply_text_edits({ { range = range, newText = completion_text } }, vim.api.nvim_get_current_buf(),
       "utf-16")
