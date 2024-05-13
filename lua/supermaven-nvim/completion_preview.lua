@@ -124,6 +124,7 @@ function CompletionPreview.on_accept_suggestion()
         character = vim.fn.col("$"),
       }
     }
+
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Space><Left><Del>", true, false, true), "n", false)
     vim.lsp.util.apply_text_edits({ { range = range, newText = completion_text } }, vim.api.nvim_get_current_buf(),
       "utf-16")
@@ -131,10 +132,10 @@ function CompletionPreview.on_accept_suggestion()
 
     local lines = u.line_count(completion_text)
     local last_line = u.get_last_line(completion_text)
-    local other_lines = vim.split(completion_text, "\n", { plain = true })
 
-    vim.notify("supermaven, lines = " .. vim.inspect(lines))
-    vim.notify("supermaven, other_lines = " .. vim.inspect(other_lines))
+    print("Lines: " .. lines)
+    -- vim.notify("supermaven, lines = " .. vim.inspect(lines))
+    -- vim.notify("supermaven, other_lines = " .. vim.inspect(other_lines))
 
     local new_cursor_pos = { cursor[1] + lines - 1, #last_line + 1 }
 
